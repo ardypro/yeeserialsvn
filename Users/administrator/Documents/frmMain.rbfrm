@@ -804,6 +804,64 @@ Begin Window frmMain
          UseFocusRing    =   True
          Visible         =   True
          Width           =   213
+         Begin Serial Serial1
+            Baud            =   8
+            Bits            =   3
+            CTS             =   ""
+            DTR             =   ""
+            Height          =   32
+            Index           =   -2147483648
+            InitialParent   =   "txtTestData"
+            Left            =   395
+            LockedInPosition=   False
+            Parity          =   0
+            Scope           =   0
+            Stop            =   0
+            TabPanelIndex   =   0
+            Top             =   266
+            Width           =   32
+            XON             =   ""
+         End
+         Begin HTTPSocket HTTPSocket1
+            Address         =   ""
+            Height          =   32
+            Index           =   -2147483648
+            InitialParent   =   "txtTestData"
+            Left            =   427
+            LockedInPosition=   False
+            Port            =   80
+            Scope           =   0
+            TabPanelIndex   =   0
+            Top             =   266
+            Width           =   32
+            yield           =   0
+         End
+         Begin Timer Timer1
+            Height          =   32
+            Index           =   -2147483648
+            InitialParent   =   "txtTestData"
+            Left            =   468
+            LockedInPosition=   False
+            Mode            =   2
+            Period          =   300
+            Scope           =   0
+            TabPanelIndex   =   0
+            Top             =   267
+            Width           =   32
+         End
+         Begin Timer tmrClearLog
+            Height          =   32
+            Index           =   -2147483648
+            InitialParent   =   "txtTestData"
+            Left            =   512
+            LockedInPosition=   False
+            Mode            =   2
+            Period          =   900000
+            Scope           =   0
+            TabPanelIndex   =   0
+            Top             =   266
+            Width           =   32
+         End
       End
       Begin PushButton btnSend
          AutoDeactivate  =   True
@@ -867,39 +925,6 @@ Begin Window frmMain
          Visible         =   True
          Width           =   80
       End
-   End
-   Begin Serial Serial1
-      Baud            =   8
-      Bits            =   3
-      CTS             =   ""
-      DTR             =   ""
-      Height          =   32
-      Index           =   -2147483648
-      Left            =   217
-      LockedInPosition=   False
-      Parity          =   0
-      Scope           =   0
-      Stop            =   0
-      TabPanelIndex   =   0
-      Top             =   399
-      Width           =   32
-      XON             =   ""
-   End
-   Begin HTTPSocket HTTPSocket1
-      Address         =   ""
-      BytesAvailable  =   0
-      BytesLeftToSend =   0
-      Height          =   32
-      Index           =   -2147483648
-      IsConnected     =   0
-      Left            =   249
-      LockedInPosition=   False
-      Port            =   80
-      Scope           =   0
-      TabPanelIndex   =   0
-      Top             =   399
-      Width           =   32
-      yield           =   0
    End
    Begin RoundRectangle stSerial
       AutoDeactivate  =   True
@@ -1030,7 +1055,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   421
+      Left            =   220
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1053,29 +1078,36 @@ Begin Window frmMain
       Visible         =   True
       Width           =   159
    End
-   Begin Timer Timer1
-      Height          =   32
+   Begin PushButton btnBatchUpload
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "批量上传"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   39
+      HelpTag         =   ""
       Index           =   -2147483648
-      Left            =   290
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   485
+      LockBottom      =   ""
       LockedInPosition=   False
-      Mode            =   2
-      Period          =   300
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
       Scope           =   0
+      TabIndex        =   10
       TabPanelIndex   =   0
-      Top             =   400
-      Width           =   32
-   End
-   Begin Timer tmrClearLog
-      Height          =   32
-      Index           =   -2147483648
-      Left            =   334
-      LockedInPosition=   False
-      Mode            =   2
-      Period          =   900000
-      Scope           =   0
-      TabPanelIndex   =   0
-      Top             =   399
-      Width           =   32
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   401
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -1097,7 +1129,7 @@ End
 		  stSerial.FillColor=mdlGlobal.CurrentSerialColor
 		  stNet.FillColor=mdlGlobal.CurrentNetColor
 		  
-		  if System.Network.IsConnected then 
+		  if System.Network.IsConnected then
 		    mdlGlobal.CurrentNetColor=clGreen
 		  Else
 		    mdlGlobal.CurrentNetColor=clGray
@@ -1147,7 +1179,7 @@ End
 	#tag MenuHandler
 		Function 帮助关于() As Boolean Handles 帮助关于.Action
 			dim frm as new frmInfo
-			frm.ShowModal 
+			frm.ShowModal
 			'frm.Close
 			frm=nil
 			
@@ -1203,7 +1235,7 @@ End
 		Function CheckAPISettings() As Boolean
 		  dim ret as Boolean
 		  
-		  ret= txtAPIVer.Text<>"" And txtDeviceID.Text <>"" And txtKEY.Text<>"" and txtSensorID.Text <>"" 
+		  ret= txtAPIVer.Text<>"" And txtDeviceID.Text <>"" And txtKEY.Text<>"" and txtSensorID.Text <>""
 		  
 		  Return ret
 		End Function
@@ -1270,12 +1302,12 @@ End
 		  Dim p As Integer
 		  dim length as Integer
 		  dim ret as string=""
-		  'dim digit as string 
+		  'dim digit as string
 		  
 		  
 		  UpdateLog  MESSAGE_RECEIVE_DATA_FROM_SERIAL+ EndOfLine+ Source
 		  
-		  if Filter="" then //如果没有传感器数据标识，则直接从第一位开始取有效的数字 
+		  if Filter="" then //如果没有传感器数据标识，则直接从第一位开始取有效的数字
 		    p=1
 		  Else
 		    p= InStr(Source, Filter)
@@ -1293,7 +1325,7 @@ End
 		  Loop
 		  
 		  'MsgBox Source
-		  'msgbox ret 
+		  'msgbox ret
 		  
 		  
 		  'DebugInfo(Source,"source")
@@ -1380,7 +1412,7 @@ End
 		  
 		  dim uStamp as Int32
 		  
-		  uStamp= now.TotalSeconds - base.TotalSeconds 
+		  uStamp= now.TotalSeconds - base.TotalSeconds
 		  
 		  return uStamp
 		  
@@ -1394,7 +1426,7 @@ End
 		  
 		  t=str(Now)+EndOfLine
 		  t=t+"    "+Message+EndOfLine
-		  t=t+txtLog.Text 
+		  t=t+txtLog.Text
 		  't= t.ConvertEncoding(Encodings.UTF8)
 		  
 		  txtLog.Text=t
@@ -1490,8 +1522,7 @@ End
 
 	#tag Note, Name = TODO
 		1  将API Key移到form open事件
-		2  
-		
+		2
 	#tag EndNote
 
 
@@ -1517,7 +1548,7 @@ End
 
 	#tag Constant, Name = MESSAGE_CLOSE_SERIAL, Type = String, Dynamic = False, Default = \"\xE5\x85\xB3\xE9\x97\xAD\xE4\xB8\xB2\xE5\x8F\xA3\xEF\xBC\x9A", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE5\x85\xB3\xE9\x97\xAD\xE4\xB8\xB2\xE5\x8F\xA3\xEF\xBC\x9A"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Close Serial Port: "
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE5\x85\xB3\xE9\x97\xAD\xE4\xB8\xB2\xE5\x8F\xA3\xEF\xBC\x9A"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Close Serial Port: "
 	#tag EndConstant
 
@@ -1611,7 +1642,7 @@ End
 		      MsgBox "API参数尚未设置完成！"
 		    End
 		    
-		    if Serial1.Open then 
+		    if Serial1.Open then
 		      if Serial1.BytesAvailable>0 then
 		        Serial1.Flush   'application打开之后，尽管串口尚未打开，但是device发送来的数据已经开始进入串口缓冲区
 		      End
@@ -1701,6 +1732,69 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events Serial1
+	#tag Event
+		Sub DataAvailable()
+		  Timer1.Enabled=True
+		  UpdateSerialStatus
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events HTTPSocket1
+	#tag Event
+		Sub Connected()
+		  if HTTPSocket1.IsConnected then
+		    stNet.FillColor = clGreen
+		  else
+		    stNet.FillColor=clGray
+		  end
+		  
+		  stNet.Refresh
+		  
+		End Sub
+	#tag EndEvent
+	#tag Event
+		Sub HeadersReceived(headers as internetHeaders, httpStatus as integer)
+		  Select case httpStatus
+		  case 200
+		    UpdateLog MESSAGE_SENT_SUCCESS
+		  case 406
+		    UpdateLog  MESSAGE_SERVER_BUSY
+		  Else
+		    UpdateLog MESSAGE_OTHER_SERVER_STATUS
+		  end Select
+		  
+		  
+		  UpdateNETStatus
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Timer1
+	#tag Event
+		Sub Action()
+		  '临时解决方案，延时之后再接收串口数据
+		  dim Source as String
+		  dim Value as String
+		  
+		  Source= Serial1.ReadAll
+		  Value = GetValue(Source,GetFilter)
+		  if Value<>"" then
+		    txtTestData.Text=Value
+		    SendData Value
+		  End
+		  
+		  Timer1.Enabled=False
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events tmrClearLog
+	#tag Event
+		Sub Action()
+		  txtLog.Text=""
+		End Sub
+	#tag EndEvent
+#tag EndEvents
 #tag Events btnSend
 	#tag Event
 		Sub Action()
@@ -1728,66 +1822,16 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events Serial1
-	#tag Event
-		Sub DataAvailable()
-		  Timer1.Enabled=True
-		  UpdateSerialStatus
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events HTTPSocket1
-	#tag Event
-		Sub Connected()
-		  if HTTPSocket1.IsConnected then
-		    stNet.FillColor = clGreen
-		  else
-		    stNet.FillColor=clGray
-		  end
-		  
-		  stNet.Refresh
-		  
-		End Sub
-	#tag EndEvent
-	#tag Event
-		Sub HeadersReceived(headers as internetHeaders, httpStatus as integer)
-		  Select case httpStatus 
-		  case 200
-		    UpdateLog MESSAGE_SENT_SUCCESS
-		  case 406
-		    UpdateLog  MESSAGE_SERVER_BUSY
-		  Else
-		    UpdateLog MESSAGE_OTHER_SERVER_STATUS
-		  end Select
-		  
-		  
-		  UpdateNETStatus
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events Timer1
+#tag Events btnBatchUpload
 	#tag Event
 		Sub Action()
-		  '临时解决方案，延时之后再接收串口数据
-		  dim Source as String
-		  dim Value as String
+		  dim bu as new frmBatchUpload
 		  
-		  Source= Serial1.ReadAll
-		  Value = GetValue(Source,GetFilter)
-		  if Value<>"" then 
-		    txtTestData.Text=Value
-		    SendData Value
-		  End
+		  bu.ShowModal
+		  bu.Close
+		  bu=Nil
 		  
-		  Timer1.Enabled=False
 		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events tmrClearLog
-	#tag Event
-		Sub Action()
-		  txtLog.Text=""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
