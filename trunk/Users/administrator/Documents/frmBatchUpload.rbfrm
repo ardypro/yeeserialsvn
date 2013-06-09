@@ -371,6 +371,11 @@ End
 		  Wend
 		  
 		  MsgBox  jsonBatch.ToString 
+		  
+		  frmMain.txtTestData.Text=""
+		  frmMain.txtTestData.Text =jsonBatch.ToString
+		  
+		  
 		  ts.Close
 		  
 		  
