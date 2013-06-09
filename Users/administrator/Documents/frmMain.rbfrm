@@ -7,7 +7,7 @@ Begin Window frmMain
    Frame           =   11
    FullScreen      =   False
    HasBackColor    =   False
-   Height          =   460
+   Height          =   5.4e+2
    ImplicitInstance=   True
    LiveResize      =   True
    MacProcID       =   0
@@ -21,9 +21,9 @@ Begin Window frmMain
    MinWidth        =   64
    Placement       =   0
    Resizeable      =   False
-   Title           =   "yeelink串口服务器"
+   Title           =   "yeelink(TM)串口服务器"
    Visible         =   True
-   Width           =   600
+   Width           =   6.92e+2
    Begin GroupBox grpSerial
       AutoDeactivate  =   True
       Bold            =   ""
@@ -49,7 +49,7 @@ Begin Window frmMain
       Top             =   14
       Underline       =   ""
       Visible         =   True
-      Width           =   560
+      Width           =   643
       Begin ComboBox cbxSerial
          AutoComplete    =   True
          AutoDeactivate  =   True
@@ -241,7 +241,7 @@ Begin Window frmMain
       Top             =   99
       Underline       =   ""
       Visible         =   True
-      Width           =   562
+      Width           =   645
       Begin Label Label3
          AutoDeactivate  =   True
          Bold            =   ""
@@ -665,7 +665,7 @@ Begin Window frmMain
       Bold            =   ""
       Caption         =   "联机日志"
       Enabled         =   True
-      Height          =   189
+      Height          =   258
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -698,7 +698,7 @@ Begin Window frmMain
          DataSource      =   ""
          Enabled         =   True
          Format          =   ""
-         Height          =   148
+         Height          =   217
          HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
@@ -738,7 +738,7 @@ Begin Window frmMain
       Bold            =   ""
       Caption         =   "服务器联机测试"
       Enabled         =   True
-      Height          =   189
+      Height          =   281
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
@@ -758,7 +758,7 @@ Begin Window frmMain
       Top             =   197
       Underline       =   ""
       Visible         =   True
-      Width           =   237
+      Width           =   320
       Begin TextArea txtTestData
          AcceptTabs      =   ""
          Alignment       =   0
@@ -771,7 +771,7 @@ Begin Window frmMain
          DataSource      =   ""
          Enabled         =   True
          Format          =   ""
-         Height          =   118
+         Height          =   208
          HelpTag         =   ""
          HideSelection   =   True
          Index           =   -2147483648
@@ -785,7 +785,7 @@ Begin Window frmMain
          LockRight       =   ""
          LockTop         =   True
          Mask            =   ""
-         Multiline       =   False
+         Multiline       =   True
          ReadOnly        =   ""
          Scope           =   0
          ScrollbarHorizontal=   ""
@@ -803,7 +803,7 @@ Begin Window frmMain
          Underline       =   ""
          UseFocusRing    =   True
          Visible         =   True
-         Width           =   213
+         Width           =   286
          Begin Serial Serial1
             Baud            =   8
             Bits            =   3
@@ -876,7 +876,7 @@ Begin Window frmMain
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          Italic          =   ""
-         Left            =   485
+         Left            =   550
          LockBottom      =   ""
          LockedInPosition=   False
          LockLeft        =   True
@@ -889,7 +889,7 @@ Begin Window frmMain
          TextFont        =   "System"
          TextSize        =   0
          TextUnit        =   0
-         Top             =   351
+         Top             =   443
          Underline       =   ""
          Visible         =   True
          Width           =   80
@@ -907,7 +907,7 @@ Begin Window frmMain
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          Italic          =   ""
-         Left            =   395
+         Left            =   459
          LockBottom      =   ""
          LockedInPosition=   False
          LockLeft        =   True
@@ -920,10 +920,42 @@ Begin Window frmMain
          TextFont        =   "System"
          TextSize        =   0
          TextUnit        =   0
-         Top             =   353
+         Top             =   443
          Underline       =   ""
          Visible         =   True
          Width           =   80
+      End
+      Begin CheckBox chkBatch
+         AutoDeactivate  =   True
+         Bold            =   ""
+         Caption         =   "批量数据"
+         DataField       =   ""
+         DataSource      =   ""
+         Enabled         =   True
+         Height          =   20
+         HelpTag         =   ""
+         Index           =   -2147483648
+         InitialParent   =   "GroupBox3"
+         Italic          =   ""
+         Left            =   361
+         LockBottom      =   ""
+         LockedInPosition=   False
+         LockLeft        =   True
+         LockRight       =   ""
+         LockTop         =   True
+         Scope           =   0
+         State           =   0
+         TabIndex        =   3
+         TabPanelIndex   =   0
+         TabStop         =   True
+         TextFont        =   "System"
+         TextSize        =   0
+         TextUnit        =   0
+         Top             =   443
+         Underline       =   ""
+         Value           =   False
+         Visible         =   True
+         Width           =   73
       End
    End
    Begin RoundRectangle stSerial
@@ -936,7 +968,7 @@ Begin Window frmMain
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   82
+      Left            =   76
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -947,7 +979,7 @@ Begin Window frmMain
       Scope           =   0
       TabIndex        =   5
       TabPanelIndex   =   0
-      Top             =   407
+      Top             =   481
       Visible         =   True
       Width           =   35
    End
@@ -962,7 +994,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   72
+      Left            =   66
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -979,7 +1011,7 @@ Begin Window frmMain
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   426
+      Top             =   500
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
@@ -995,7 +1027,7 @@ Begin Window frmMain
       HelpTag         =   ""
       Index           =   -2147483648
       InitialParent   =   ""
-      Left            =   149
+      Left            =   143
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1006,7 +1038,7 @@ Begin Window frmMain
       Scope           =   0
       TabIndex        =   7
       TabPanelIndex   =   0
-      Top             =   407
+      Top             =   481
       Visible         =   True
       Width           =   35
    End
@@ -1021,7 +1053,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   139
+      Left            =   133
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1038,7 +1070,7 @@ Begin Window frmMain
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   426
+      Top             =   500
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
@@ -1055,7 +1087,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   220
+      Left            =   246
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1072,7 +1104,7 @@ Begin Window frmMain
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   426
+      Top             =   500
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
@@ -1091,7 +1123,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   485
+      Left            =   550
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1104,7 +1136,7 @@ Begin Window frmMain
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   401
+      Top             =   490
       Underline       =   ""
       Visible         =   True
       Width           =   80
@@ -1389,7 +1421,7 @@ End
 		  
 		  HTTPSocket1.ClearRequestHeaders
 		  HTTPSocket1.requestHeaders.AppendHeader ("U-ApiKey: ",GetAPIKey)
-		  postData="{"+   chr(34)+"value"+chr(34)+":"  + value +"}"
+		  postData=value    ' "{"+   chr(34)+"value"+chr(34)+":"  + value +"}"
 		  HTTPSocket1.SetPostContent  (postData , "application/json;charset=utf-8")
 		  
 		  HTTPSocket1.Post "http://api.yeelink.net/"+   GetAPIVersion+  "/device/"+GetDeviceID +"/sensor/"+ GetSensorID+"/datapoints"
@@ -1402,7 +1434,7 @@ End
 		Sub SendSingleValueAsString(value as String)
 		  dim s as String
 		  s="{"+   chr(34)+"value"+chr(34)+":"  + value +"}"
-		  
+		  SendData s
 		End Sub
 	#tag EndMethod
 
@@ -1773,6 +1805,8 @@ End
 		  case 406
 		    UpdateLog  MESSAGE_SERVER_BUSY
 		  Else
+		    //MsgBox headers.Value
+		    MsgBox str(httpStatus)
 		    UpdateLog MESSAGE_OTHER_SERVER_STATUS
 		  end Select
 		  
@@ -1810,7 +1844,7 @@ End
 #tag Events btnSend
 	#tag Event
 		Sub Action()
-		  SendData txtTestData.Text
+		  SendSingleValueAsString txtTestData.Text
 		  
 		  
 		End Sub
@@ -1845,7 +1879,7 @@ End
 		  bu=Nil
 		  
 		  '批量上传
-		  
+		  SendData txtTestData.Text
 		End Sub
 	#tag EndEvent
 #tag EndEvents
