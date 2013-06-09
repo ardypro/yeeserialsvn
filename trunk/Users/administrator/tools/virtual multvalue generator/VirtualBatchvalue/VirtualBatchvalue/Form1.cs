@@ -37,6 +37,8 @@ namespace VirtualBatchvalue
             this.Refresh();
 
             rnd = new Random(DateTime.Now.Millisecond);
+
+            label6.Text = "配合yeelink批量上传测试用的小工具";
         }
 
         private void btnGen_Click(object sender, EventArgs e)
@@ -102,6 +104,11 @@ namespace VirtualBatchvalue
                 objWriter.Close();
 
             }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
 
 
