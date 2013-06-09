@@ -38,7 +38,7 @@ namespace VirtualBatchvalue
 
             rnd = new Random(DateTime.Now.Millisecond);
 
-            label6.Text = "配合yeelink批量上传测试用的小工具";
+            label6.Text = "配合yeelink批量上传测试用的小工具，产生批量数值类型的数据";
         }
 
         private void btnGen_Click(object sender, EventArgs e)
