@@ -537,7 +537,7 @@ Begin Window frmMain
          TabIndex        =   2
          TabPanelIndex   =   0
          TabStop         =   True
-         Text            =   "value:"
+         Text            =   "value"
          TextColor       =   0
          TextFont        =   "System"
          TextSize        =   0
@@ -1399,6 +1399,14 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub SendSingleValueAsString(value as String)
+		  dim s as String
+		  s="{"+   chr(34)+"value"+chr(34)+":"  + value +"}"
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Function TimeToUnixtime() As integer
 		  dim Now as new Date
 		  dim base as new Date
@@ -1528,6 +1536,10 @@ End
 
 	#tag Property, Flags = &h0
 		bSerialState As Boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		strBatchJSON As String = """"""
 	#tag EndProperty
 
 
@@ -1828,9 +1840,11 @@ End
 		  dim bu as new frmBatchUpload
 		  
 		  bu.ShowModal
+		  
 		  bu.Close
 		  bu=Nil
 		  
+		  '批量上传
 		  
 		End Sub
 	#tag EndEvent

@@ -82,37 +82,6 @@ Begin Window frmBatchUpload
       Visible         =   True
       Width           =   68
    End
-   Begin PushButton btnDir
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "..."
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   307
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   15
-      Underline       =   ""
-      Visible         =   True
-      Width           =   37
-   End
    Begin PushButton btnBatchOK
       AutoDeactivate  =   True
       Bold            =   ""
@@ -218,7 +187,7 @@ Begin Window frmBatchUpload
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   244
+      Width           =   274
    End
    Begin PushButton btnLoadBatch
       AutoDeactivate  =   True
@@ -331,6 +300,21 @@ End
 #tag EndWindow
 
 #tag WindowCode
+	#tag Event
+		Sub Close()
+		  frmMain.strBatchJSON= jsonBatch.ToString
+		  jsonBatch.Clear
+		  jsonBatch=Nil
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Open()
+		  jsonBatch=new JSONItem
+		End Sub
+	#tag EndEvent
+
+
 	#tag Method, Flags = &h0
 		Function CSV2JSON(fName as String) As JSONItem
 		  
@@ -338,31 +322,13 @@ End
 	#tag EndMethod
 
 
+	#tag Property, Flags = &h0
+		jsonBatch As JSONItem
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
-#tag Events btnDir
-	#tag Event
-		Sub Action()
-		  dim dlg as new OpenDialog
-		  dlg.ActionButtonCaption="选择..."
-		  'dlg.CancelButtonCaptionn="取消"
-		  dlg.Title="选择数据"
-		  dlg.PromptText="prompt"
-		  dlg.MultiSelect=false
-		  dim f as FolderItem=dlg.ShowModal
-		  If f=nil then
-		    dlg=nil
-		    Exit Sub
-		  end If
-		  
-		  txtDir.Text=f.AbsolutePath
-		  
-		  dlg=Nil
-		  
-		  
-		End Sub
-	#tag EndEvent
-#tag EndEvents
 #tag Events btnLoadBatch
 	#tag Event
 		Sub Action()
@@ -372,20 +338,39 @@ End
 		  dim i As Integer
 		  dim fields() As String
 		  
+		  dim csvType as new FileType
+		  csvType.Name="csv文件"
+		  csvType.Extensions=".csv"
+		  
 		  dim f As FolderItem
-		  f=GetOpenFolderItem("any")
+		  f=GetOpenFolderItem(csvType )
+		  
 		  ts=f.OpenAsTextFile
 		  if ts=nil then
 		    MsgBox ("打开数据文件失败!")
 		    Exit Sub
 		  end If
 		  
+		  jsonBatch.Clear
+		  dim json as new JSONItem
+		  
 		  While not ts.EOF
 		    s=ts.ReadLine
+		    
 		    fields=Split(s,",")
 		    txtDataJSON.AppendText fields(0)
+		    txtDataJSON.AppendText ","
+		    txtDataJSON.AppendText fields(1)
+		    
+		    json.Value("timestamp")= fields(0)
+		    json.Value("value")=fields(1)
+		    jsonBatch.Append (json)
+		    
+		    
+		    txtDataJSON.AppendText EndOfLine.Windows
 		  Wend
 		  
+		  MsgBox  jsonBatch.ToString 
 		  ts.Close
 		  
 		  
