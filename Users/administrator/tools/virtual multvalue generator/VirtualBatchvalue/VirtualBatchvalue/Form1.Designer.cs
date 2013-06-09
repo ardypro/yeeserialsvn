@@ -42,20 +42,21 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lvValues = new System.Windows.Forms.ListView();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnGen = new System.Windows.Forms.Button();
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label5 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.dlgFileSave = new System.Windows.Forms.SaveFileDialog();
             this.chkDouble = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 54);
+            this.label1.Location = new System.Drawing.Point(29, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 0;
@@ -127,7 +128,7 @@
             // 
             // txtMaxValue
             // 
-            this.txtMaxValue.Location = new System.Drawing.Point(122, 141);
+            this.txtMaxValue.Location = new System.Drawing.Point(122, 138);
             this.txtMaxValue.Name = "txtMaxValue";
             this.txtMaxValue.Size = new System.Drawing.Size(53, 21);
             this.txtMaxValue.TabIndex = 9;
@@ -136,7 +137,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 92);
+            this.label2.Location = new System.Drawing.Point(29, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 12);
             this.label2.TabIndex = 12;
@@ -154,11 +155,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(33, 143);
+            this.label4.Location = new System.Drawing.Point(29, 143);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.Size = new System.Drawing.Size(65, 12);
             this.label4.TabIndex = 14;
-            this.label4.Text = "Max value";
+            this.label4.Text = "Rnage(0- )";
             // 
             // lvValues
             // 
@@ -170,11 +171,15 @@
             this.lvValues.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lvValues.Location = new System.Drawing.Point(122, 200);
             this.lvValues.Name = "lvValues";
-            this.lvValues.Size = new System.Drawing.Size(432, 257);
+            this.lvValues.Size = new System.Drawing.Size(432, 234);
             this.lvValues.TabIndex = 15;
             this.lvValues.UseCompatibleStateImageBehavior = false;
             this.lvValues.View = System.Windows.Forms.View.Details;
             this.lvValues.SelectedIndexChanged += new System.EventHandler(this.lvValues_SelectedIndexChanged);
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "No";
             // 
             // columnHeader1
             // 
@@ -194,10 +199,6 @@
             this.btnGen.Text = "Generate";
             this.btnGen.UseVisualStyleBackColor = true;
             this.btnGen.Click += new System.EventHandler(this.btnGen_Click);
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "No";
             // 
             // label5
             // 
@@ -234,11 +235,22 @@
             this.chkDouble.Text = "Double type";
             this.chkDouble.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(42, 454);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(11, 12);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "a";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(636, 478);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.chkDouble);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.label5);
@@ -290,6 +302,7 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.SaveFileDialog dlgFileSave;
         private System.Windows.Forms.CheckBox chkDouble;
+        private System.Windows.Forms.Label label6;
     }
 }
 
