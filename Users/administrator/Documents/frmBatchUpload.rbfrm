@@ -34,7 +34,7 @@ Begin Window frmBatchUpload
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   138
+      Left            =   147
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -80,7 +80,7 @@ Begin Window frmBatchUpload
       Underline       =   ""
       Value           =   True
       Visible         =   True
-      Width           =   100
+      Width           =   68
    End
    Begin PushButton btnDir
       AutoDeactivate  =   True
@@ -346,12 +346,48 @@ End
 		  dim dlg as new OpenDialog
 		  dlg.ActionButtonCaption="选择..."
 		  'dlg.CancelButtonCaptionn="取消"
-		  dlg.Title="title"
+		  dlg.Title="选择数据"
 		  dlg.PromptText="prompt"
 		  dlg.MultiSelect=false
 		  dim f as FolderItem=dlg.ShowModal
+		  If f=nil then
+		    dlg=nil
+		    Exit Sub
+		  end If
 		  
 		  txtDir.Text=f.AbsolutePath
+		  
+		  dlg=Nil
+		  
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnLoadBatch
+	#tag Event
+		Sub Action()
+		  '加载数据
+		  dim ts As TextInputStream
+		  dim s as String
+		  dim i As Integer
+		  dim fields() As String
+		  
+		  dim f As FolderItem
+		  f=GetOpenFolderItem("any")
+		  ts=f.OpenAsTextFile
+		  if ts=nil then
+		    MsgBox ("打开数据文件失败!")
+		    Exit Sub
+		  end If
+		  
+		  While not ts.EOF
+		    s=ts.ReadLine
+		    fields=Split(s,",")
+		    txtDataJSON.AppendText fields(0)
+		  Wend
+		  
+		  ts.Close
+		  
 		  
 		  
 		End Sub
@@ -360,7 +396,7 @@ End
 #tag Events btnCancelBatch
 	#tag Event
 		Sub Action()
-		  frmBatchUpload.Close 
+		  frmBatchUpload.Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
