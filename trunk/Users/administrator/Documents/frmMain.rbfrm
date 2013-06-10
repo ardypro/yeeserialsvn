@@ -876,7 +876,7 @@ Begin Window frmMain
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          Italic          =   ""
-         Left            =   550
+         Left            =   587
          LockBottom      =   ""
          LockedInPosition=   False
          LockLeft        =   True
@@ -892,7 +892,7 @@ Begin Window frmMain
          Top             =   443
          Underline       =   ""
          Visible         =   True
-         Width           =   80
+         Width           =   49
       End
       Begin PushButton btnClear
          AutoDeactivate  =   True
@@ -907,7 +907,7 @@ Begin Window frmMain
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          Italic          =   ""
-         Left            =   459
+         Left            =   521
          LockBottom      =   ""
          LockedInPosition=   False
          LockLeft        =   True
@@ -923,12 +923,12 @@ Begin Window frmMain
          Top             =   443
          Underline       =   ""
          Visible         =   True
-         Width           =   80
+         Width           =   54
       End
       Begin CheckBox chkBatch
          AutoDeactivate  =   True
          Bold            =   ""
-         Caption         =   "批量数据"
+         Caption         =   "批量JSON格式数据"
          DataField       =   ""
          DataSource      =   ""
          Enabled         =   True
@@ -937,7 +937,7 @@ Begin Window frmMain
          Index           =   -2147483648
          InitialParent   =   "GroupBox3"
          Italic          =   ""
-         Left            =   361
+         Left            =   356
          LockBottom      =   ""
          LockedInPosition=   False
          LockLeft        =   True
@@ -955,7 +955,7 @@ Begin Window frmMain
          Underline       =   ""
          Value           =   False
          Visible         =   True
-         Width           =   73
+         Width           =   137
       End
    End
    Begin RoundRectangle stSerial
@@ -1087,7 +1087,7 @@ Begin Window frmMain
       Index           =   -2147483648
       InitialParent   =   ""
       Italic          =   ""
-      Left            =   246
+      Left            =   343
       LockBottom      =   ""
       LockedInPosition=   False
       LockLeft        =   True
@@ -1098,7 +1098,7 @@ Begin Window frmMain
       Selectable      =   False
       TabIndex        =   9
       TabPanelIndex   =   0
-      Text            =   "Powered by yeeLink.net"
+      Text            =   "Powered by www.yeeLink.net"
       TextAlign       =   0
       TextColor       =   0
       TextFont        =   "System"
@@ -1108,12 +1108,12 @@ Begin Window frmMain
       Transparent     =   False
       Underline       =   ""
       Visible         =   True
-      Width           =   159
+      Width           =   177
    End
    Begin PushButton btnBatchUpload
       AutoDeactivate  =   True
       Bold            =   ""
-      ButtonStyle     =   0
+      ButtonStyle     =   5
       Cancel          =   ""
       Caption         =   "批量上传"
       Default         =   ""
@@ -1431,10 +1431,18 @@ End
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
+		Sub SendJSONData(jsonString as String)
+		  SendData jsonString
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0
 		Sub SendSingleValueAsString(value as String)
 		  dim s as String
 		  s="{"+   chr(34)+"value"+chr(34)+":"  + value +"}"
 		  SendData s
+		  
 		End Sub
 	#tag EndMethod
 
@@ -1571,6 +1579,10 @@ End
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
+		LastHttpStatus As Integer
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
 		strBatchJSON As String = """"""
 	#tag EndProperty
 
@@ -1598,49 +1610,49 @@ End
 
 	#tag Constant, Name = MESSAGE_OPEN_SERIAL, Type = String, Dynamic = False, Default = \"\xE6\x89\x93\xE5\xBC\x80\xE4\xB8\xB2\xE5\x8F\xA3: ", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE6\x89\x93\xE5\xBC\x80\xE4\xB8\xB2\xE5\x8F\xA3\xEF\xBC\x9A "
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Open Serial Port: "
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE6\x89\x93\xE5\xBC\x80\xE4\xB8\xB2\xE5\x8F\xA3: "
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Open Serial Port: "
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_OTHER_SERVER_STATUS, Type = String, Dynamic = False, Default = \"\xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE8\xBF\x94\xE5\x9B\x9E\xE5\x85\xB6\xE5\xAE\x83\xE7\x8A\xB6\xE6\x80\x81\xE5\x80\xBC\xEF\xBC\x8C\xE8\xAF\xB7\xE5\x8F\x82\xE8\x80\x83API\xE6\x89\x8B\xE5\x86\x8C\xEF\xBC\x81", Scope = Public
-		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE8\xBF\x94\xE5\x9B\x9E\xE5\x85\xB6\xE5\xAE\x83\xE7\x8A\xB6\xE6\x80\x81\xE5\x80\xBC\xEF\xBC\x8C\xE8\xAF\xB7\xE5\x8F\x82\xE8\x80\x83API\xE6\x89\x8B\xE5\x86\x8C\xEF\xBC\x81"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Server Returned Other Code\x2C Please Refer to API Manual"
+		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE5\x85\xB6\xE5\xAE\x83\xE9\x94\x99\xE8\xAF\xAF"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE5\x85\xB6\xE5\xAE\x83\xE9\x94\x99\xE8\xAF\xAF"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Server Returned Other Code\x2C Please Refer to API Manual"
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_PARSE_DATA, Type = String, Dynamic = False, Default = \"\xE8\xA7\xA3\xE6\x9E\x90\xE5\x88\xB0\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE8\xA7\xA3\xE6\x9E\x90\xE5\x88\xB0\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Value: "
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A "
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Value: "
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_RECEIVE_DATA_FROM_SERIAL, Type = String, Dynamic = False, Default = \"\xE4\xBB\x8E\xE4\xB8\xB2\xE5\x8F\xA3\xE6\x8E\xA5\xE6\x94\xB6\xE5\x88\xB0\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE4\xBB\x8E\xE4\xB8\xB2\xE5\x8F\xA3\xE6\x8E\xA5\xE6\x94\xB6\xE5\x88\xB0\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Received Data From Serial Port:"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE4\xBB\x8E\xE4\xB8\xB2\xE5\x8F\xA3\xE6\x8D\x95\xE8\x8E\xB7\xE5\x88\xB0\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Received Data From Serial Port:"
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_SEND_DATA, Type = String, Dynamic = False, Default = \"\xE6\xAD\xA3\xE5\x9C\xA8\xE5\x8F\x91\xE9\x80\x81\xE6\x95\xB0\xE6\x8D\xAE\xEF\xBC\x9A", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE6\xAD\xA3\xE5\x9C\xA8\xE5\x8F\x91\xE9\x80\x81\xEF\xBC\x9A "
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Sending Value: "
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE6\xAD\xA3\xE5\x9C\xA8\xE5\x8F\x91\xE9\x80\x81\xEF\xBC\x9A"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Sending Value: "
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_SENT_SUCCESS, Type = String, Dynamic = False, Default = \"\xE5\x8F\x91\xE5\xB8\x83\xE6\x88\x90\xE5\x8A\x9F", Scope = Public
-		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE5\x8F\x91\xE5\xB8\x83\xE6\x88\x90\xE5\x8A\x9F"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Published Successfully"
+		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE4\xB8\x8A\xE4\xBC\xA0\xE6\x88\x90\xE5\x8A\x9F"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE4\xB8\x8A\xE4\xBC\xA0\xE6\x88\x90\xE5\x8A\x9F"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Published Successfully"
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_SERIAL_BUSY, Type = String, Dynamic = False, Default = \"\xE4\xB8\xB2\xE5\x8F\xA3\xE4\xB8\x8D\xE5\xAD\x98\xE5\x9C\xA8\xE6\x88\x96\xE8\x80\x85\xE8\xA2\xAB\xE5\x8D\xA0\xE7\x94\xA8\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE6\x89\x93\xE5\xBC\x80", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE4\xB8\xB2\xE5\x8F\xA3\xE4\xB8\x8D\xE5\xAD\x98\xE5\x9C\xA8\xE6\x88\x96\xE8\x80\x85\xE8\xA2\xAB\xE5\x8D\xA0\xE7\x94\xA8\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE6\x89\x93\xE5\xBC\x80"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Serial Port Not Exist Or Busy"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE4\xB8\xB2\xE5\x8F\xA3\xE4\xB8\x8D\xE5\xAD\x98\xE5\x9C\xA8\xE6\x88\x96\xE8\x80\x85\xE8\xA2\xAB\xE5\x8D\xA0\xE7\x94\xA8\xEF\xBC\x8C\xE6\x97\xA0\xE6\xB3\x95\xE6\x89\x93\xE5\xBC\x80"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Serial Port Not Exist Or Busy"
 	#tag EndConstant
 
 	#tag Constant, Name = MESSAGE_SERVER_BUSY, Type = String, Dynamic = False, Default = \"\xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE5\xBF\x99", Scope = Public
 		#Tag Instance, Platform = Mac OS, Language = Default, Definition  = \"\xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE5\xBF\x99"
-		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"Server Busy"
+		#Tag Instance, Platform = Windows, Language = Default, Definition  = \"\xE6\x9C\x8D\xE5\x8A\xA1\xE5\x99\xA8\xE5\xBF\x99"
 		#Tag Instance, Platform = Linux, Language = Default, Definition  = \"Server Busy"
 	#tag EndConstant
 
@@ -1767,6 +1779,16 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
+#tag Events txtLog
+	#tag Event
+		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  base.Append EditClear
+		  base.Append EditCopy
+		  base.Append EditSelectAll
+		  base.Append EditCut
+		End Function
+	#tag EndEvent
+#tag EndEvents
 #tag Events txtTestData
 	#tag Event
 		Sub TextChange()
@@ -1774,6 +1796,12 @@ End
 		  btnSend.Enabled=txtTestData.Text<>"" and txtdeviceid.Text<>"" and txtKEY.Text<>"" and txtSensorID.Text<>""
 		  
 		End Sub
+	#tag EndEvent
+	#tag Event
+		Function ConstructContextualMenu(base as MenuItem, x as Integer, y as Integer) As Boolean
+		  base.Append EditClear
+		  base.Append EditPaste
+		End Function
 	#tag EndEvent
 #tag EndEvents
 #tag Events Serial1
@@ -1810,6 +1838,11 @@ End
 		    UpdateLog MESSAGE_OTHER_SERVER_STATUS
 		  end Select
 		  
+		  LastHttpStatus=httpStatus
+		  
+		  'if (headers.Count<>0) then
+		  'MsgBox (headers.Source)
+		  'end if
 		  
 		  UpdateNETStatus
 		End Sub
@@ -1844,7 +1877,12 @@ End
 #tag Events btnSend
 	#tag Event
 		Sub Action()
-		  SendSingleValueAsString txtTestData.Text
+		  if (chkBatch.State= CheckBox.CheckedStates.Checked) then 
+		    SendJSONData txtTestData.Text
+		  Else 
+		    SendSingleValueAsString txtTestData.Text
+		    
+		  End If
 		  
 		  
 		End Sub
@@ -1879,7 +1917,9 @@ End
 		  bu=Nil
 		  
 		  '批量上传
-		  SendData txtTestData.Text
+		  if (strBatchJSON<>"") then 
+		    SendJSONData strBatchJSON
+		  end if 
 		End Sub
 	#tag EndEvent
 #tag EndEvents

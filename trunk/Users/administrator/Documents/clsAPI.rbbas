@@ -1,12 +1,12 @@
 #tag Class
 Protected Class clsAPI
 	#tag Method, Flags = &h0
-		Sub Constructor(DataFile as String="api.rsd")
+		Sub Constructor(DataFile as String = "api.rsd")
 		  db = new REALSQLDatabase
 		  dbFile= new FolderItem(DataFile)
 		  db.DatabaseFile= dbFile
 		  db.AutoCommit=True
-		   if not  dbFile.Exists then
+		  if not  dbFile.Exists then
 		    
 		    if db.CreateDatabaseFile then
 		      db.SQLExecute " CREATE TABLE APIConfig (APIKey TEXT PRIMARY KEY, DeviceID TEXT, SensorID TEXT, APIVer TEXT, Flag TEXT, DisplayKey TEXT); "
@@ -15,7 +15,7 @@ Protected Class clsAPI
 		      r.Column("DeviceID")="0"
 		      r.Column("SensorID")="0"
 		      r.Column("APIVer")="v1.0"
-		      r.Column("Flag")="value:"
+		      r.Column("Flag")="value"
 		      r.Column("DisplayKey")="0"
 		      
 		      DB.InsertRecord "APIConfig", r
@@ -51,7 +51,7 @@ Protected Class clsAPI
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function ExistAPI(APIKey as String="") As Boolean
+		Function ExistAPI(APIKey as String = "") As Boolean
 		  DIM rs as RecordSet
 		  if APIKey="" then
 		    rs= db.SQLSelect ("SELECT * FROM APIConfig;")
@@ -164,7 +164,7 @@ Protected Class clsAPI
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetBooleanValue(KeyName as string , Value as Boolean)
+		Sub SetBooleanValue(KeyName as string, Value as Boolean)
 		  dim v as String
 		  if Value then
 		    v="-1"
@@ -204,7 +204,7 @@ Protected Class clsAPI
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetStringValue(KeyName as string , Value as String)
+		Sub SetStringValue(KeyName as string, Value as String)
 		  db.SQLExecute("Begin Transaction")
 		  db.SQLExecute "UPDATE APIConfig SET  "+ KeyName +" = '"+ Value+"';"
 		  db.SQLExecute "END Transaction"
