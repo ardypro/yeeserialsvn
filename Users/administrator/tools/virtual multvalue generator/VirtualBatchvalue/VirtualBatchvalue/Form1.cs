@@ -58,7 +58,10 @@ namespace VirtualBatchvalue
             int qty = Convert.ToInt16(txtQTY.Text);
             for (int i = 0; i < qty; i++)
             {
-                curTime = curTime.AddSeconds(Convert.ToInt16(txtStep.Text));
+                int ratio = 1;
+                if (chkCountDown.Checked)
+                    ratio = -1;
+                curTime = curTime.AddSeconds(Convert.ToInt16(txtStep.Text)*ratio);
                 ListViewItem itm = lvValues.Items.Add((i + 1).ToString());
                 itm.SubItems.Add(curTime.ToString());
 
@@ -107,6 +110,101 @@ namespace VirtualBatchvalue
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkCountDown_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkDouble_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMaxValue_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtQTY_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtStep_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSeconds_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMinute_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHour_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDay_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtMonth_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
