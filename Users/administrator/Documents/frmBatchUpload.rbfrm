@@ -24,95 +24,6 @@ Begin Window frmBatchUpload
    Title           =   "批量上传"
    Visible         =   True
    Width           =   4.75e+2
-   Begin RadioButton rbJSON
-      AutoDeactivate  =   True
-      Bold            =   ""
-      Caption         =   "JSON格式"
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   147
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   42
-      Underline       =   ""
-      Value           =   False
-      Visible         =   True
-      Width           =   100
-   End
-   Begin RadioButton rbCSV
-      AutoDeactivate  =   True
-      Bold            =   ""
-      Caption         =   "CSV格式"
-      Enabled         =   True
-      Height          =   20
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   57
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   42
-      Underline       =   ""
-      Value           =   True
-      Visible         =   True
-      Width           =   68
-   End
-   Begin PushButton btnBatchOK
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "确认"
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   375
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   82
-      Underline       =   ""
-      Visible         =   True
-      Width           =   80
-   End
    Begin Label Label1
       AutoDeactivate  =   True
       Bold            =   ""
@@ -194,7 +105,7 @@ Begin Window frmBatchUpload
       Bold            =   ""
       ButtonStyle     =   0
       Cancel          =   ""
-      Caption         =   "加载"
+      Caption         =   "加载..."
       Default         =   ""
       Enabled         =   True
       Height          =   22
@@ -220,37 +131,6 @@ Begin Window frmBatchUpload
       Visible         =   True
       Width           =   80
    End
-   Begin PushButton btnCancelBatch
-      AutoDeactivate  =   True
-      Bold            =   ""
-      ButtonStyle     =   0
-      Cancel          =   ""
-      Caption         =   "放弃"
-      Default         =   ""
-      Enabled         =   True
-      Height          =   22
-      HelpTag         =   ""
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   ""
-      Left            =   375
-      LockBottom      =   ""
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   ""
-      LockTop         =   True
-      Scope           =   0
-      TabIndex        =   8
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextFont        =   "System"
-      TextSize        =   0
-      TextUnit        =   0
-      Top             =   116
-      Underline       =   ""
-      Visible         =   True
-      Width           =   80
-   End
    Begin TextArea txtDataJSON
       AcceptTabs      =   True
       Alignment       =   0
@@ -268,7 +148,7 @@ Begin Window frmBatchUpload
       HideSelection   =   True
       Index           =   -2147483648
       Italic          =   ""
-      Left            =   20
+      Left            =   57
       LimitText       =   0
       LockBottom      =   ""
       LockedInPosition=   False
@@ -290,11 +170,73 @@ Begin Window frmBatchUpload
       TextFont        =   "System"
       TextSize        =   0
       TextUnit        =   0
-      Top             =   82
+      Top             =   69
       Underline       =   ""
       UseFocusRing    =   True
       Visible         =   True
-      Width           =   324
+      Width           =   268
+   End
+   Begin PushButton btnUpload
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "上传"
+      Default         =   ""
+      Enabled         =   False
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   375
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   10
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   69
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
+   End
+   Begin PushButton btnCancel
+      AutoDeactivate  =   True
+      Bold            =   ""
+      ButtonStyle     =   0
+      Cancel          =   ""
+      Caption         =   "取消"
+      Default         =   ""
+      Enabled         =   True
+      Height          =   22
+      HelpTag         =   ""
+      Index           =   -2147483648
+      InitialParent   =   ""
+      Italic          =   ""
+      Left            =   375
+      LockBottom      =   ""
+      LockedInPosition=   False
+      LockLeft        =   True
+      LockRight       =   ""
+      LockTop         =   True
+      Scope           =   0
+      TabIndex        =   11
+      TabPanelIndex   =   0
+      TabStop         =   True
+      TextFont        =   "System"
+      TextSize        =   0
+      TextUnit        =   0
+      Top             =   120
+      Underline       =   ""
+      Visible         =   True
+      Width           =   80
    End
 End
 #tag EndWindow
@@ -302,7 +244,6 @@ End
 #tag WindowCode
 	#tag Event
 		Sub Close()
-		  frmMain.strBatchJSON= jsonBatch.ToString
 		  jsonBatch.Clear
 		  jsonBatch=Nil
 		End Sub
@@ -311,6 +252,7 @@ End
 	#tag Event
 		Sub Open()
 		  jsonBatch=new JSONItem
+		  frmMain.strBatchJSON=""
 		End Sub
 	#tag EndEvent
 
@@ -335,7 +277,7 @@ End
 		  '加载数据
 		  dim ts As TextInputStream
 		  dim s as String
-		  dim i As Integer
+		  
 		  dim fields() As String
 		  
 		  dim csvType as new FileType
@@ -344,6 +286,14 @@ End
 		  
 		  dim f As FolderItem
 		  f=GetOpenFolderItem(csvType )
+		  If (f<>nil) then 
+		    txtDir.Text = f.AbsolutePath
+		  else
+		    f=nil
+		    frmMain.strBatchJSON=""
+		    exit sub 
+		  end if 
+		  
 		  
 		  ts=f.OpenAsTextFile
 		  if ts=nil then
@@ -352,29 +302,25 @@ End
 		  end If
 		  
 		  jsonBatch.Clear
-		  dim json as new JSONItem
+		  
 		  
 		  While not ts.EOF
 		    s=ts.ReadLine
 		    
 		    fields=Split(s,",")
-		    txtDataJSON.AppendText fields(0)
-		    txtDataJSON.AppendText ","
-		    txtDataJSON.AppendText fields(1)
-		    
+		    dim json as new JSONItem
 		    json.Value("timestamp")= fields(0)
-		    json.Value("value")=fields(1)
+		    json.Value("value")=val(fields(1))
 		    jsonBatch.Append (json)
 		    
 		    
 		    txtDataJSON.AppendText EndOfLine.Windows
 		  Wend
 		  
-		  MsgBox  jsonBatch.ToString 
+		  //MsgBox  jsonBatch.ToString
+		  txtDataJSON.Text = jsonBatch.ToString
 		  
-		  frmMain.txtTestData.Text=""
-		  frmMain.txtTestData.Text =jsonBatch.ToString
-		  
+		  btnUpload.Enabled=True
 		  
 		  ts.Close
 		  
@@ -383,10 +329,20 @@ End
 		End Sub
 	#tag EndEvent
 #tag EndEvents
-#tag Events btnCancelBatch
+#tag Events btnUpload
 	#tag Event
 		Sub Action()
-		  frmBatchUpload.Close
+		  frmMain.strBatchJSON= jsonBatch.ToString
+		  Close
+		  
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events btnCancel
+	#tag Event
+		Sub Action()
+		  frmMain.strBatchJSON=""
+		  Close
 		End Sub
 	#tag EndEvent
 #tag EndEvents
